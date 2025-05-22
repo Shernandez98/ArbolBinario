@@ -1,0 +1,56 @@
+import org.junit.Before;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class ArbolBinarioBusquedaTest {
+
+    private ArbolBinarioBusqueda arbol;
+
+    @Before
+    public void setUp() {
+        arbol = new ArbolBinarioBusqueda();
+        arbol.insertar(50);
+        arbol.insertar(30);
+        arbol.insertar(70);
+        arbol.insertar(20);
+        arbol.insertar(40);
+        arbol.insertar(60);
+        arbol.insertar(80);
+    }
+
+    @Test
+    public void testContieneValorExistente() {
+        assertTrue(arbol.contiene(50));
+        assertTrue(arbol.contiene(20));
+        assertTrue(arbol.contiene(80));
+    }
+
+    @Test
+    public void testContieneValorInexistente() {
+        assertFalse(arbol.contiene(10));
+        assertFalse(arbol.contiene(100));
+    }
+
+    @Test
+    public void testObtenerMinimo() {
+        assertEquals(20, arbol.obtenerMinimo());
+    }
+
+    @Test
+    public void testObtenerMaximo() {
+        assertEquals(80, arbol.obtenerMaximo());
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testObtenerMinimoEnArbolVacio() {
+        ArbolBinarioBusqueda arbolVacio = new ArbolBinarioBusqueda();
+        arbolVacio.obtenerMinimo();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testObtenerMaximoEnArbolVacio() {
+        ArbolBinarioBusqueda arbolVacio = new ArbolBinarioBusqueda();
+        arbolVacio.obtenerMaximo();
+    }
+}
